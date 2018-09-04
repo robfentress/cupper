@@ -1,6 +1,6 @@
 languageCode = "en-us"
 title = "Cupper"
-baseURL = "https://thepaciellogroup.github.io/cupper/"
+baseURL = "https://robfentress.github.io/cupper/"
 canonifyURLs = true
 theme = "cupper"
 publishDir = "docs"
