@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="canonical" href="https://robfentress.github.io/cupper/patterns/coding/command-line/">
+    <link rel="canonical" href="https://robfentress.github.io/cupper/patterns/aria-authoring-practices/button/">
     <link rel="apple-touch-icon" sizes="57x57" href="https://robfentress.github.io/cupper/images/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="https://robfentress.github.io/cupper/images/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="https://robfentress.github.io/cupper/images/apple-touch-icon-72x72.png">
@@ -30,7 +30,7 @@
     </style>
     <title>
       
-        Command line | Cupper
+        Button | Cupper
       
     </title>
     
@@ -306,7 +306,7 @@
                         <ul>
                           
                             <li class="pattern">
-                              <a href="https://robfentress.github.io/cupper/patterns/aria-authoring-practices/button/" >
+                              <a href="https://robfentress.github.io/cupper/patterns/aria-authoring-practices/button/" aria-current="page">
                                 <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
                                   <use xlink:href="#bookmark"></use>
                                 </svg>
@@ -358,7 +358,7 @@
                             </li>
                           
                             <li class="pattern">
-                              <a href="https://robfentress.github.io/cupper/patterns/coding/command-line/" aria-current="page">
+                              <a href="https://robfentress.github.io/cupper/patterns/coding/command-line/" >
                                 <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
                                   <use xlink:href="#bookmark"></use>
                                 </svg>
@@ -401,39 +401,742 @@
       <svg class="bookmark-icon" aria-hidden="true" viewBox="0 0 40 50" focusable="false">
         <use xlink:href="#bookmark"></use>
       </svg>
-      Command line
+      Button
     </h1>
     
     
       
 
+  <nav class="toc" aria-labelledby="toc-heading">
+    <h2 id="toc-heading">Table of contents</h2>
+    <ol>
+      
+        <li>
+          <a href="#examples">
+            Examples
+          </a>
+        </li>
+      
+        <li>
+          <a href="#keyboard-interaction">
+            Keyboard Interaction
+          </a>
+        </li>
+      
+        <li>
+          <a href="#wai-aria-roles-states-and-properties">
+            WAI-ARIA Roles, States, and Properties
+          </a>
+        </li>
+      
+        <li>
+          <a href="#relevant-wcag-success-criteria">
+            Relevant WCAG Success Criteria
+          </a>
+        </li>
+      
+    </ol>
+  </nav>
+
 
     
-    <p>Your pattern documentation may need to include commands for installing packages or using <abbr title="command line interface">CLI</abbr>s. <strong>Cupper</strong> offers the <code>cmd</code> shortcode for making code blocks look like terminal commands.</p>
+    
 
-<p>Here&rsquo;s how you write it:</p>
+<p>A button is a widget that enables users to trigger an action or event, such as submitting a form, opening a dialog, canceling an action, or performing a delete operation. A common convention for informing users that a button launches a dialog is to append &ldquo;…&rdquo; (ellipsis) to the button label, e.g., &ldquo;Save as…&rdquo;.</p>
 
-<pre class=""><code  data-codeblock-shortcode>
-&#x7b;{&lt;cmd>}}
-npm run start
-&#x7b;{&lt;/cmd>}}
-</code></pre>
+<p>In addition to the ordinary button widget, WAI-ARIA supports 2 other types of buttons:</p>
 
+<ul>
+<li>Toggle button: A two-state button that can be either off (not pressed) or on (pressed). To tell assistive
+technologies that a button is a toggle button, specify a value for the attribute aria-pressed. For example, a button labeled mute in an audio player could indicate that sound is muted by setting the pressed state true. Important: it is critical the label on a toggle does not change when its state changes. In this example, when the pressed state is true, the label remains &ldquo;Mute&rdquo; so a screen reader would say something like &ldquo;Mute toggle button pressed&rdquo;. Alternatively, if the design were to call for the button label to change from &ldquo;Mute&rdquo; to &ldquo;Unmute,&rdquo; the aria-pressed attribute would not be needed.</li>
+<li>Menu button: as described in the menu button pattern, a button is revealed to assistive technologies as a menu
+button if it has the property aria-haspopup set to either menu or true.</li>
+</ul>
 
-<p>And here&rsquo;s how it looks:</p>
-
-<pre class="cmd"><code>npm run start</code></pre>
-
-
-<aside aria-label="warning" class="note warning">
+<aside aria-label="note" class="note">
   <div>
-    <svg class="sign" aria-hidden="true" viewBox="0 0 48.430474 41.646302" focusable="false">
-      <use xlink:href="#warning"></use>
+    <svg class="sign" aria-hidden="true" viewBox="0 0 41.667306 41.66729" focusable="false">
+      <use xlink:href="#info"></use>
     </svg>
-    <p>The <code>cmd</code> shortcode currently only supports single commands. If you want to show multiple, successive commands use separate <code>cmd</code> blocks.</p>
+    <p>The types of actions performed by buttons are distinctly different from the function of a link (see link pattern). It is important that both the appearance and role of a widget match the function it provides. Nevertheless, elements occasionally have the visual style of a link but perform the action of a button. In such cases, giving the element role button helps assistive technology users understand the function of the element. However, a better solution is to adjust the visual design so it matches the function and ARIA role.</p>
 
   </div>
 </aside>
+
+
+<h2 id="examples">Examples</h2>
+
+
+<div class="demo-container">
+  
+      <div class="demo-inner" >
+        <div class="demo" id="js-demo-1daf0aa96f4fefcdca71e9ad84284749"></div>
+        <button data-launch="js-demo-1daf0aa96f4fefcdca71e9ad84284749">Launch <span aria-hidden="true">↗</span></button>
+      </div>
+      
+  
+  <template id="template-1daf0aa96f4fefcdca71e9ad84284749">
+      
+<p>This <q>Print</q> action button uses a <code>div</code> element.</p>
+<div tabindex="0"
+     role="button"
+     id="action">
+  Print Page
+</div>
+<p>This <q>Mute</q> toggle button uses an <code>a</code>element.</p>
+<a tabindex="0"
+   role="button"
+   id="toggle"
+   aria-pressed="false">
+  Mute
+  <svg aria-hidden="true">
+    <use xlink:href="/images/mute.svg#icon-sound"></use>
+  </svg>
+</a>
+<style>
+[role="button"] {
+  display: inline-block;
+  position: relative;
+  padding: .4em .7em;
+  border: 1px solid hsl(213, 71%, 49%);
+  border-radius: 5px;
+  box-shadow: 0 1px 2px hsl(216, 27%, 55%);
+  color: #fff;
+  text-shadow: 0 -1px 1px hsl(216, 27%, 25%);
+  background-color: hsl(216, 82%, 51%);
+  background-image: linear-gradient(to bottom, hsl(216, 82%, 53%), hsl(216, 82%, 47%));
+}
+
+[role="button"]:hover {
+  border-color: hsl(213, 71%, 29%);
+  background-color: hsl(216, 82%, 31%);
+  background-image: linear-gradient(to bottom, hsl(216, 82%, 33%), hsl(216, 82%, 27%));
+  cursor: default;
+}
+
+[role="button"]:focus {
+  outline: none;
+}
+
+[role="button"]:focus::before {
+  position: absolute;
+  z-index: -1;
+  /* button border width - outline width - offset */
+  top: calc(-1px - 3px - 3px);
+  right: calc(-1px - 3px - 3px);
+  bottom: calc(-1px - 3px - 3px);
+  left: calc(-1px - 3px - 3px);
+  border: 3px solid hsl(213, 71%, 49%);
+  /* button border radius + outline width + offset */
+  border-radius: calc(5px + 3px + 3px);
+  content: '';
+}
+
+[role="button"]:active {
+  border-color: hsl(213, 71%, 49%);
+  background-color: hsl(216, 82%, 31%);
+  background-image: linear-gradient(to bottom, hsl(216, 82%, 53%), hsl(216, 82%, 47%));
+  box-shadow: inset 0 3px 5px 1px hsl(216, 82%, 30%);
+}
+
+[role="button"][aria-pressed] {
+  border-color: hsl(261, 71%, 49%);
+  box-shadow: 0 1px 2px hsl(261, 27%, 55%);
+  text-shadow: 0 -1px 1px hsl(261, 27%, 25%);
+  background-color: hsl(261, 82%, 51%);
+  background-image: linear-gradient(to bottom, hsl(261, 82%, 53%), hsl(261, 82%, 47%));
+}
+
+[role="button"][aria-pressed]:hover {
+  border-color: hsl(261, 71%, 29%);
+  background-color: hsl(261, 82%, 31%);
+  background-image: linear-gradient(to bottom, hsl(261, 82%, 33%), hsl(261, 82%, 27%));
+}
+
+[role="button"][aria-pressed="true"] {
+  padding-top: .5em;
+  padding-bottom: .3em;
+  border-color: hsl(261, 71%, 49%);
+  background-color: hsl(261, 82%, 31%);
+  background-image: linear-gradient(to bottom, hsl(261, 82%, 63%), hsl(261, 82%, 57%));
+  box-shadow: inset 0 3px 5px 1px hsl(261, 82%, 30%);
+}
+
+[role="button"][aria-pressed="true"]:hover {
+  border-color: hsl(261, 71%, 49%);
+  background-color: hsl(261, 82%, 31%);
+  background-image: linear-gradient(to bottom, hsl(261, 82%, 43%), hsl(261, 82%, 37%));
+  box-shadow: inset 0 3px 5px 1px hsl(261, 82%, 20%);
+}
+
+[role="button"][aria-pressed]:focus::before {
+  border-color: hsl(261, 71%, 49%);
+}
+
+[role="button"] svg {
+  margin: .15em auto -.15em;
+  height: 1em;
+  width: 1em;
+  pointer-events: none;
+}
+</style>
+<script>
+var ICON_MUTE_URL  = '/images/mute.svg#icon-mute';
+var ICON_SOUND_URL = '/images/mute.svg#icon-sound';
+
+function init () {
+  // Create variables for the various buttons
+  var actionButton = demo.getElementById('action');
+  console.log(actionButton);
+  var toggleButton = demo.getElementById('toggle');
+
+  // Add event listeners to the various buttons
+  actionButton.addEventListener('click', actionButtonEventHandler);
+  actionButton.addEventListener('keydown', actionButtonEventHandler);
+
+  toggleButton.addEventListener('click', toggleButtonEventHandler);
+  toggleButton.addEventListener('keydown', toggleButtonEventHandler);
+
+}
+
+function actionButtonEventHandler (event) {
+  var type = event.type;
+
+  // Grab the keydown and click events
+  if (type === 'keydown') {
+    // If either enter or space is pressed, execute the funtion
+    if (event.keyCode === 13 || event.keyCode === 32) {
+      window.print();
+
+      event.preventDefault();
+    }
+  }
+  else if (type === 'click') {
+    window.print();
+  }
+}
+
+function toggleButtonEventHandler (event) {
+  var type = event.type;
+
+  // Grab the keydown and click events
+  if (type === 'keydown') {
+    // If either enter or space is pressed, execute the funtion
+    if (event.keyCode === 13 || event.keyCode === 32) {
+      toggleButtonState(event);
+
+      event.preventDefault();
+    }
+  }
+  else if (type === 'click') {
+    // Only allow this event if either role is correctly set
+    // or a correct element is used.
+    if (event.target.getAttribute('role') === 'button' || event.target.tagName === 'button') {
+      toggleButtonState(event);
+    }
+  }
+}
+
+function toggleButtonState (event) {
+  var button = event.target;
+  var currentState = button.getAttribute('aria-pressed');
+  var newState = 'true';
+
+  var icon = button.getElementsByTagName('use')[0];
+  var currentIconState = icon.getAttribute('xlink:href');
+  var newIconState = ICON_MUTE_URL;
+
+  // If aria-pressed is set to true, set newState to false
+  if (currentState === 'true') {
+    newState = 'false';
+    newIconState = ICON_SOUND_URL;
+  }
+
+  // Set the new aria-pressed state on the button
+  button.setAttribute('aria-pressed', newState);
+  icon.setAttribute('xlink:href', newIconState);
+}
+</script>
+
+  </template>
+  <script>
+    (function() {
+      var root = document.getElementById('js-demo-1daf0aa96f4fefcdca71e9ad84284749');
+      var template = document.getElementById('template-1daf0aa96f4fefcdca71e9ad84284749');
+
+      
+      var demoDiv = document.createElement('div');
+      demoDiv.innerHTML = template.innerHTML;
+      var standaloneScript = demoDiv.querySelector('script');
+      if (standaloneScript) {
+        standaloneScript.textContent = '(function() { document.getElementsByTagName(\'html\')[0].setAttribute(\'lang\', \'en\'); var demo = document; ' + standaloneScript.textContent + ' })();';
+      }
+
+      if (document.head.attachShadow) {
+        var templateScript = template.content.querySelector('script');
+        if (templateScript) {
+          var wrappedScript = '(function() { var demo = document.getElementById(\'js-demo-1daf0aa96f4fefcdca71e9ad84284749\').shadowRoot;' + templateScript.textContent + '})();';
+          templateScript.textContent = wrappedScript;
+        }
+        root.attachShadow({mode: 'open'});
+        root.shadowRoot.appendChild(document.importNode(template.content, true));
+      } else {
+        root.innerHTML = '<p class="site-error"><strong style="font-weight:bold">Site error:</strong> A browser supporting Shadow DOM is needed to run encapsulated demos. You can launch the demo in a separate window ↓</p>';
+      }
+
+      var launchButton = document.querySelector('[data-launch="js-demo-1daf0aa96f4fefcdca71e9ad84284749"]');
+      launchButton.addEventListener('click', function () {
+        var standalone = window.open();
+        standalone.document.body.innerHTML = demoDiv.innerHTML;
+
+        
+        var newScript = standalone.document.createElement('script');
+        var oldScript = standalone.document.querySelector('script');
+        if (oldScript) {
+          newScript.textContent = oldScript.textContent;
+          oldScript.parentNode.removeChild(oldScript);
+          standalone.document.body.appendChild(newScript);
+        }
+        
+
+        standalone.document.title = 'demo ' + "1daf0aa96f4fefcdca71e9ad84284749";
+      });
+    })();
+  </script>
+</div>
+
+
+<div class="expandable-section">
+  
+    <h3>
+  
+    <button aria-expanded="false" data-expands="js-expandable-d65537e4bf71bb7204af2c946383a839">
+      <span class="expandable-label">HTML Source Code</span>
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 70.866142 70.866141">
+        <g transform="translate(0 -981.5)">
+          <rect style="stroke-width:0;fill:currentColor" ry="5" height="60" width="9.8985" y="987.36" x="30.051" class="up-strut" />
+          <rect style="stroke-width:0;fill:currentColor" ry="5" height="10" width="60" y="1012.4" x="5"/>
+        </g>
+      </svg>
+    </button>
+  
+    </h3>
+  
+  <div id="js-expandable-d65537e4bf71bb7204af2c946383a839" hidden>
+    <pre><code class="language-html">&lt;p&gt;This &lt;q&gt;Print&lt;/q&gt; action button uses a &lt;code&gt;div&lt;/code&gt; element.&lt;/p&gt;
+&lt;div tabindex=&quot;0&quot;
+     role=&quot;button&quot;
+     id=&quot;action&quot;&gt;
+  Print Page
+&lt;/div&gt;
+&lt;p&gt;This &lt;q&gt;Mute&lt;/q&gt; toggle button uses an &lt;code&gt;a&lt;/code&gt;element.&lt;/p&gt;
+&lt;a tabindex=&quot;0&quot;
+   role=&quot;button&quot;
+   id=&quot;toggle&quot;
+   aria-pressed=&quot;false&quot;&gt;
+  Mute
+  &lt;svg aria-hidden=&quot;true&quot;&gt;
+    &lt;use xlink:href=&quot;images/mute.svg#icon-sound&quot;&gt;&lt;/use&gt;
+  &lt;/svg&gt;
+&lt;/a&gt;
+</code></pre>
+
+  </div>
+</div>
+
+
+<div class="expandable-section">
+  
+    <h3>
+  
+    <button aria-expanded="false" data-expands="js-expandable-a34ba484462c5da3c36be75964515c51">
+      <span class="expandable-label">CSS Source Code</span>
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 70.866142 70.866141">
+        <g transform="translate(0 -981.5)">
+          <rect style="stroke-width:0;fill:currentColor" ry="5" height="60" width="9.8985" y="987.36" x="30.051" class="up-strut" />
+          <rect style="stroke-width:0;fill:currentColor" ry="5" height="10" width="60" y="1012.4" x="5"/>
+        </g>
+      </svg>
+    </button>
+  
+    </h3>
+  
+  <div id="js-expandable-a34ba484462c5da3c36be75964515c51" hidden>
+    <pre><code class="language-css">[role=&quot;button&quot;] {
+  display: inline-block;
+  position: relative;
+  padding: .4em .7em;
+  border: 1px solid hsl(213, 71%, 49%);
+  border-radius: 5px;
+  box-shadow: 0 1px 2px hsl(216, 27%, 55%);
+  color: #fff;
+  text-shadow: 0 -1px 1px hsl(216, 27%, 25%);
+  background-color: hsl(216, 82%, 51%);
+  background-image: linear-gradient(to bottom, hsl(216, 82%, 53%), hsl(216, 82%, 47%));
+}
+
+[role=&quot;button&quot;]:hover {
+  border-color: hsl(213, 71%, 29%);
+  background-color: hsl(216, 82%, 31%);
+  background-image: linear-gradient(to bottom, hsl(216, 82%, 33%), hsl(216, 82%, 27%));
+  cursor: default;
+}
+
+[role=&quot;button&quot;]:focus {
+  outline: none;
+}
+
+[role=&quot;button&quot;]:focus::before {
+  position: absolute;
+  z-index: -1;
+  /* button border width - outline width - offset */
+  top: calc(-1px - 3px - 3px);
+  right: calc(-1px - 3px - 3px);
+  bottom: calc(-1px - 3px - 3px);
+  left: calc(-1px - 3px - 3px);
+  border: 3px solid hsl(213, 71%, 49%);
+  /* button border radius + outline width + offset */
+  border-radius: calc(5px + 3px + 3px);
+  content: '';
+}
+
+[role=&quot;button&quot;]:active {
+  border-color: hsl(213, 71%, 49%);
+  background-color: hsl(216, 82%, 31%);
+  background-image: linear-gradient(to bottom, hsl(216, 82%, 53%), hsl(216, 82%, 47%));
+  box-shadow: inset 0 3px 5px 1px hsl(216, 82%, 30%);
+}
+
+[role=&quot;button&quot;][aria-pressed] {
+  border-color: hsl(261, 71%, 49%);
+  box-shadow: 0 1px 2px hsl(261, 27%, 55%);
+  text-shadow: 0 -1px 1px hsl(261, 27%, 25%);
+  background-color: hsl(261, 82%, 51%);
+  background-image: linear-gradient(to bottom, hsl(261, 82%, 53%), hsl(261, 82%, 47%));
+}
+
+[role=&quot;button&quot;][aria-pressed]:hover {
+  border-color: hsl(261, 71%, 29%);
+  background-color: hsl(261, 82%, 31%);
+  background-image: linear-gradient(to bottom, hsl(261, 82%, 33%), hsl(261, 82%, 27%));
+}
+
+[role=&quot;button&quot;][aria-pressed=&quot;true&quot;] {
+  padding-top: .5em;
+  padding-bottom: .3em;
+  border-color: hsl(261, 71%, 49%);
+  background-color: hsl(261, 82%, 31%);
+  background-image: linear-gradient(to bottom, hsl(261, 82%, 63%), hsl(261, 82%, 57%));
+  box-shadow: inset 0 3px 5px 1px hsl(261, 82%, 30%);
+}
+
+[role=&quot;button&quot;][aria-pressed=&quot;true&quot;]:hover {
+  border-color: hsl(261, 71%, 49%);
+  background-color: hsl(261, 82%, 31%);
+  background-image: linear-gradient(to bottom, hsl(261, 82%, 43%), hsl(261, 82%, 37%));
+  box-shadow: inset 0 3px 5px 1px hsl(261, 82%, 20%);
+}
+
+[role=&quot;button&quot;][aria-pressed]:focus::before {
+  border-color: hsl(261, 71%, 49%);
+}
+
+[role=&quot;button&quot;] svg {
+  margin: .15em auto -.15em;
+  height: 1em;
+  width: 1em;
+  pointer-events: none;
+}
+</code></pre>
+
+  </div>
+</div>
+
+
+<div class="expandable-section">
+  
+    <h3>
+  
+    <button aria-expanded="false" data-expands="js-expandable-5b35236ac898fbc6c188e64990269f07">
+      <span class="expandable-label">JS Source Code</span>
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 70.866142 70.866141">
+        <g transform="translate(0 -981.5)">
+          <rect style="stroke-width:0;fill:currentColor" ry="5" height="60" width="9.8985" y="987.36" x="30.051" class="up-strut" />
+          <rect style="stroke-width:0;fill:currentColor" ry="5" height="10" width="60" y="1012.4" x="5"/>
+        </g>
+      </svg>
+    </button>
+  
+    </h3>
+  
+  <div id="js-expandable-5b35236ac898fbc6c188e64990269f07" hidden>
+    <pre><code class="language-javascript">/*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   button.js
+*
+*   Desc:   JS code for Button Design Pattersn
+*/
+
+var ICON_MUTE_URL  = 'images/mute.svg#icon-mute';
+var ICON_SOUND_URL = 'images/mute.svg#icon-sound';
+
+function init () {
+  // Create variables for the various buttons
+  var actionButton = document.getElementById('action');
+  var toggleButton = document.getElementById('toggle');
+
+  // Add event listeners to the various buttons
+  actionButton.addEventListener('click', actionButtonEventHandler);
+  actionButton.addEventListener('keydown', actionButtonEventHandler);
+
+  toggleButton.addEventListener('click', toggleButtonEventHandler);
+  toggleButton.addEventListener('keydown', toggleButtonEventHandler);
+
+}
+
+function actionButtonEventHandler (event) {
+  var type = event.type;
+
+  // Grab the keydown and click events
+  if (type === 'keydown') {
+    // If either enter or space is pressed, execute the funtion
+    if (event.keyCode === 13 || event.keyCode === 32) {
+      window.print();
+
+      event.preventDefault();
+    }
+  }
+  else if (type === 'click') {
+    window.print();
+  }
+}
+
+function toggleButtonEventHandler (event) {
+  var type = event.type;
+
+  // Grab the keydown and click events
+  if (type === 'keydown') {
+    // If either enter or space is pressed, execute the funtion
+    if (event.keyCode === 13 || event.keyCode === 32) {
+      toggleButtonState(event);
+
+      event.preventDefault();
+    }
+  }
+  else if (type === 'click') {
+    // Only allow this event if either role is correctly set
+    // or a correct element is used.
+    if (event.target.getAttribute('role') === 'button' || event.target.tagName === 'button') {
+      toggleButtonState(event);
+    }
+  }
+}
+
+function toggleButtonState (event) {
+  var button = event.target;
+  var currentState = button.getAttribute('aria-pressed');
+  var newState = 'true';
+
+  var icon = button.getElementsByTagName('use')[0];
+  var currentIconState = icon.getAttribute('xlink:href');
+  var newIconState = ICON_MUTE_URL;
+
+  // If aria-pressed is set to true, set newState to false
+  if (currentState === 'true') {
+    newState = 'false';
+    newIconState = ICON_SOUND_URL;
+  }
+
+  // Set the new aria-pressed state on the button
+  button.setAttribute('aria-pressed', newState);
+  icon.setAttribute('xlink:href', newIconState);
+}
+
+window.onload = init;
+</code></pre>
+
+  </div>
+</div>
+
+
+<h2 id="keyboard-interaction">Keyboard Interaction</h2>
+
+<p>When the button has focus:</p>
+
+<ul>
+<li>Space: Activates the button.</li>
+<li>Enter: Activates the button.</li>
+<li>Following button activation, focus is set depending on the type of action the button performs. For example:
+
+<ul>
+<li>If activating the button opens a dialog, the focus moves inside the dialog. (see dialog pattern)</li>
+<li>If activating the button closes a dialog, focus typically returns to the button that opened the dialog unless the
+function performed in the dialog context logically leads to a different element. For example, activating a cancel button in a dialog returns focus to the button that opened the dialog. However, if the dialog were confirming the action of deleting the page from which it was opened, the focus would logically move to a new context.</li>
+<li>If activating the button does not dismiss the current context, then focus typically remains on the button after
+activation, e.g., an Apply or Recalculate button.</li>
+<li>If the button action indicates a context change, such as move to next step in a wizard or add another search
+criteria, then it is often appropriate to move focus to the starting point for that action.</li>
+<li>If the button is activated with a shortcut key, the focus usually remains in the context from which the shortcut key
+was activated. For example, if Alt + U were assigned to an &ldquo;Up&rdquo; button that moves the currently focused item in a list one position higher in the list, pressing Alt + U when the focus is in the list would not move the focus from the list.</li>
+</ul></li>
+</ul>
+
+<h2 id="wai-aria-roles-states-and-properties">WAI-ARIA Roles, States, and Properties</h2>
+
+<ul>
+<li>The button has role of button.</li>
+<li>The button has an accessible label. By default, the accessible name is computed from any text content inside the
+button element. However, it can also be provided with aria-labelledby or aria-label.</li>
+<li>If a description of the button&rsquo;s function is present, the button element has aria-describedby set to the ID of the element containing the description.
+When the action associated with a button is unavailable, the button has aria-disabled set to true.</li>
+<li>If the button is a toggle button, it has an aria-pressed state. When the button is toggled on, the value of this state is true, and when toggled off, the state is false.</li>
+</ul>
+
+<p>Sometimes just pictures of the pattern you&rsquo;re documenting aren&rsquo;t enough. Interactive patterns benefit from live demos, so that readers can test their functionality.</p>
+
+<h2 id="relevant-wcag-success-criteria">Relevant WCAG Success Criteria</h2>
+
+
+
+
+
+<ul class="wcag ">
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <li>
+        <strong><a href="https://www.w3.org/TR/WCAG20/#keyboard-operation-keyboard-operable">
+          <svg class="wcag-icon" viewBox="0 0 127.09899 67.763" aria-hidden="true" focusable="false">
+            <use xlink:href="#w3c"></use>
+          </svg>
+          2.1.1 Keyboard</a> (level A)
+        </strong>
+        
+      </li>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+</ul>
 
 
   </main>
